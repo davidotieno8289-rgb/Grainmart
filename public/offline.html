@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline - GrainMart</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Fraunces:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #FBF5E6 0%, #FDF0D5 100%);
+      color: #1A1208;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    .offline-container {
+      max-width: 420px;
+      text-align: center;
+      animation: fadeUp 0.6s ease;
+    }
+    
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .logo-container {
+      margin-bottom: 2rem;
+    }
+    
+    .logo {
+      font-size: 5rem;
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .brand {
+      font-family: 'Fraunces', serif;
+      font-size: 1.8rem;
+      color: #2D5016;
+      margin-top: 0.5rem;
+    }
+    
+    h1 {
+      font-family: 'Fraunces', serif;
+      font-size: 2rem;
+      color: #1A1208;
+      margin-bottom: 1rem;
+    }
+    
+    p {
+      color: #7A6040;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    
+    .offline-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
+      background: #FDF0D5;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px dashed #E8D9BC;
+    }
+    
+    .offline-icon svg {
+      width: 40px;
+      height: 40px;
+      color: #7A6040;
+    }
+    
+    .retry-btn {
+      background: linear-gradient(135deg, #C8851A 0%, #F0A830 100%);
+      color: white;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(200, 133, 26, 0.3);
+    }
+    
+    .retry-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(200, 133, 26, 0.4);
+    }
+    
+    .retry-btn:active {
+      transform: scale(0.98);
+    }
+    
+    .tips {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #E8D9BC;
+    }
+    
+    .tips h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      color: #3D2B0E;
+      margin-bottom: 1rem;
+    }
+    
+    .tips ul {
+      list-style: none;
+      text-align: left;
+    }
+    
+    .tips li {
+      color: #7A6040;
+      font-size: 0.95rem;
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    
+    .tips li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #2D5016;
+    }
+  </style>
+</head>
+<body>
+  <div class="offline-container">
+    <div class="logo-container">
+      <div class="logo">🌾</div>
+      <div class="brand">GrainMart</div>
+    </div>
+    
+    <div class="offline-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 2.829a4.978 4.978 0 01-1.414-2.83m-1.414 5.658a9 9 0 01-2.167-9.238m7.824 2.167a1 1 0 111.414 1.414m-1.414-1.414L3 3m8.293 8.293l1.414 1.414" />
+      </svg>
+    </div>
+    
+    <h1>You're Offline</h1>
+    <p>It looks like you've lost your internet connection. Don't worry, you can still browse products you've viewed before!</p>
+    
+    <button class="retry-btn" onclick="location.reload()">
+      Try Again
+    </button>
+    
+    <div class="tips">
+      <h3>While you're offline:</h3>
+      <ul>
+        <li>Previously viewed products are available</li>
+        <li>Your cart is saved locally</li>
+        <li>Orders will sync when you're back online</li>
+      </ul>
+    </div>
+  </div>
+  
+  <script>
+    // Auto-retry when connection is restored
+    window.addEventListener('online', () => {
+      location.reload();
+    });
+  </script>
+</body>
+</html>
